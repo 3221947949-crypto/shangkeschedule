@@ -38,9 +38,10 @@ jobs:
 
       - name: Regenerate school index (SCIT -> dedicated adapter)
         run: |
-          pip install pypinyin protobuf
-          python tools/build_schools.py
-          python - <<'EOF'
+          python3 -m venv /tmp/scit-venv
+          /tmp/scit-venv/bin/pip install pypinyin protobuf
+          /tmp/scit-venv/bin/python tools/build_schools.py
+          /tmp/scit-venv/bin/python - <<'EOF'
           import sys
           sys.path.insert(0, 'tools')
           import school_index_pb2
